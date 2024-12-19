@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabaseClient'; // Import supabase client
-import '../styles/SignIn.css';
-import logoSchool from '../assets/logoSchool.png'; // Replace with your actual school logo path
-import logoUSTP from '../assets/logoUSTP.png';     // Replace with your actual USTP logo path
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../lib/supabaseClient"; // Import supabase client
+import "../styles/SignIn.css";
+import logoSchool from "../assets/logoSchool.png"; // Replace with your actual school logo path
+import logoUSTP from "../assets/logoUSTP.png"; // Replace with your actual USTP logo path
 
 const SignIn = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
 
     try {
@@ -27,7 +27,7 @@ const SignIn = () => {
         setError(error.message);
       } else {
         // Redirect to home page on successful login
-        navigate('/record');
+        navigate("/record");
       }
     } catch (err) {
       setError("An unexpected error occurred");
@@ -61,8 +61,8 @@ const SignIn = () => {
             required
           />
         </div>
-        <button type="submit" disabled={loading} style={{ color: 'white' }}>
-          {loading ? 'Signing In...' : 'Login'}
+        <button type="submit" disabled={loading} style={{ color: "white" }}>
+          {loading ? "Signing In..." : "Login"}
         </button>
         {error && <p className="error-message">{error}</p>}
       </form>
