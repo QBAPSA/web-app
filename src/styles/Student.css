@@ -185,3 +185,75 @@
   input[type="checkbox"] {
     width: auto; /* Keep checkbox size default */
   }
+
+  .logs-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .logs-container h1 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .override-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+  }
+
+  .override-table th,
+  .override-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .override-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: 500;
+  }
+
+  .override-table tbody tr:nth-child(even) {
+    background-color: #f5f5f5;
+  }
+
+  .override-table tbody tr:hover {
+    background-color: #f0f0f0;
+  }
+
+  .loading {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #666;
+  }
+
+  .delete-btn {
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+  }
+
+  .delete-btn:hover {
+    background-color: #cc0000;
+  }
+
+  .error-message {
+    color: #ff4444;
+    text-align: center;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #ffebee;
+    border-radius: 4px;
+  }

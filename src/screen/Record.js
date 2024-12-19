@@ -23,7 +23,7 @@ const Record = () => {
         <ul>
           {/* <li><Link to="/home" onClick={toggleMenu}>Home</Link></li> */}
           <li><Link to="/Attendance" onClick={toggleMenu} style={{color: 'white'}}>Attendance</Link></li>
-          <li><Link to="/Student" onClick={toggleMenu} style={{color: 'white'}}>Student</Link></li>
+          <li><Link to="/Student" onClick={toggleMenu} style={{color: 'white'}}>Override</Link></li>
           <li><Link to="/Profile" onClick={toggleMenu} style={{color: 'white'}}>Profile</Link></li>
         </ul>
       </div>
@@ -34,9 +34,9 @@ const Record = () => {
           <Link to="/section">
             <button className="class-button">ICT11</button>
           </Link>
-          <Link to="/section">
+          {/* <Link to="/section">
             <button className="class-button">ICT12</button>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>

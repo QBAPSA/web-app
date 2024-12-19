@@ -18,7 +18,7 @@ const Section = () => {
       </header>
 
       <div className="home-content">
-        <h2>ICT 11</h2>
+        {/* <h2>ICT 11</h2> */}
         <div className="month-container">
           <Link to="/calendar/January" className="month-button">January</Link>
           <Link to="/calendar/February" className="month-button">February</Link>
@@ -43,7 +43,7 @@ const Section = () => {
         {/* <li><Link to="/home" onClick={toggleMenu}>Home</Link></li> */}
         
         <li><Link to="/Attendance" onClick={toggleMenu} style={{color: 'white'}}>Attendance</Link></li>
-        <li><Link to="/Student" onClick={toggleMenu} style={{color: 'white'}}>Student</Link></li>
+        <li><Link to="/Student" onClick={toggleMenu} style={{color: 'white'}}>Override</Link></li>
         <li><Link to="/Profile" onClick={toggleMenu} style={{color: 'white'}}>Profile</Link></li>
             </ul>
           </div>
