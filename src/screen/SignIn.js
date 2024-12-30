@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../lib/supabaseClient"; // Import supabase client
+import { supabase } from "../lib/supabaseClient";
 import "../styles/SignIn.css";
-import logoSchool from "../assets/logoSchool.png"; // Replace with your actual school logo path
-import logoUSTP from "../assets/logoUSTP.png"; // Replace with your actual USTP logo path
+import logoSchool from "../assets/logoSchool.png";
+import logoUSTP from "../assets/logoUSTP.png";
+
+const ADMIN_EMAIL = "jeraldtimbang@admin.com";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -18,16 +20,20 @@ const SignIn = () => {
     setLoading(true);
 
     try {
-      // Use Supabase to sign in with email and password
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
+      
       if (error) {
         setError(error.message);
       } else {
-        // Redirect to home page on successful login
-        navigate("/record");
+        // Redirect to studentmanage if admin, otherwise to record
+        if (email === ADMIN_EMAIL) {
+          navigate("/StudentManage");
+        } else {
+          navigate("/record");
+        }
       }
     } catch (err) {
       setError("An unexpected error occurred");
@@ -61,10 +67,10 @@ const SignIn = () => {
             required
           />
         </div>
-        <button type="submit" disabled={loading} style={{ color: "white" }}>
-          {loading ? "Signing In..." : "Login"}
-        </button>
         {error && <p className="error-message">{error}</p>}
+        <button type="submit" disabled={loading}>
+          {loading ? "Signing in..." : "Sign In"}
+        </button>
       </form>
     </div>
   );

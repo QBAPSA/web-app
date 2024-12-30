@@ -1,16 +1,30 @@
 .profile-container {
     padding: 20px;
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
+    background-color: white;
+    min-height: 100vh;
 }
 
 .profile-header {
     text-align: left;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
 }
 
 .profile-header h2 {
     margin-bottom: 16px;
     font-size: 24px;
+    margin: 0;
+    color: #333;
+}
+
+.profile-content {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .profile-details p {
@@ -32,9 +46,16 @@
     margin-right: 2rem;
 }
 
+.profile-info {
+    margin-bottom: 30px;
+}
+
 .profile-info h1 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 20px;
 }
 
 .title {
@@ -45,6 +66,24 @@
 
 .location {
     color: #888;
+}
+
+.info-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.info-item label {
+    font-weight: 600;
+    color: #666;
+    display: inline-block;
+    width: 100px;
+}
+
+.info-item span {
+    color: #333;
 }
 
 .profile-bio {
@@ -102,15 +141,30 @@
 }
 
 .sign-out-button {
-    padding: 8px 16px;
-    background-color: #ff4444;
+    padding: 10px 20px;
+    background-color: #dc3545;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 16px;
+    font-size: 16px;
+    width: 100%;
 }
 
 .sign-out-button:hover {
-    background-color: #ff0000;
+    background-color: #c82333;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #666;
+}
+
+.error {
+    color: #dc3545;
+    text-align: center;
+    padding: 20px;
 }

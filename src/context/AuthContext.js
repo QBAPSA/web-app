@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 import { supabase } from "../lib/supabaseClient";
 
 const AuthContext = createContext({});
+const ADMIN_EMAIL = "jeraldtimbang@admin.com";
 
 export const useAuth = () => useContext(AuthContext);
 
@@ -12,6 +13,12 @@ export const AuthProvider = ({ children }) => {
 
   const fetchTeacherData = async (email) => {
     try {
+      if (email === ADMIN_EMAIL) {
+        // Skip fetching teacher data for admin
+        setTeacherData(null);
+        return null;
+      }
+
       const { data: teacher, error } = await supabase
         .from("teachers")
         .select("*")
@@ -88,7 +95,8 @@ export const AuthProvider = ({ children }) => {
     },
     user,
     teacherData,
-    loading
+    loading,
+    isAdmin: user?.email === ADMIN_EMAIL
   };
 
   return (

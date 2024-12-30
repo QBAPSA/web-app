@@ -46,13 +46,12 @@ const Record = () => {
             </Link>
           </li>
           <li>
-            <Link
+            {/* <Link
               to="/Studentmanage"
               onClick={toggleMenu}
-              style={{ color: "white" }}
-            >
+              style={{ color: "white" }}>
               Student
-            </Link>
+            </Link> */}
           </li>
         </ul>
       </div>
