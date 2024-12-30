@@ -7,6 +7,8 @@ import Calendar from "./screen/Calendar";
 import Attendance from "./screen/Attendance";
 import Student from "./screen/Student";
 import Profile from "./screen/Profile";
+import Studentmanage from "./screen/Studentmanage";
+import Teachermanage from "./screen/Teachermanage";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -53,6 +55,22 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Student />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/studentmanage"
+            element={
+              <ProtectedRoute>
+                <Studentmanage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/teachermanage"
+            element={
+              <ProtectedRoute>
+                <Teachermanage />
               </ProtectedRoute>
             }
           />

@@ -13,18 +13,47 @@ const Record = () => {
   return (
     <div className="home-container">
       <header className="home-header">
-        <div className="menu-icon" onClick={toggleMenu}>☰</div>
+        <div className="menu-icon" onClick={toggleMenu}>
+          ☰
+        </div>
         <h1>Record</h1>
       </header>
 
       {/* Sliding Menu */}
-      <div className={`side-menu ${showMenu ? 'active' : ''}`}>
-        <button className="close-btn" onClick={toggleMenu}>Close</button>
+      <div className={`side-menu ${showMenu ? "active" : ""}`}>
+        <button className="close-btn" onClick={toggleMenu}>
+          Close
+        </button>
         <ul>
           {/* <li><Link to="/home" onClick={toggleMenu}>Home</Link></li> */}
-          <li><Link to="/Attendance" onClick={toggleMenu} style={{color: 'white'}}>Attendance</Link></li>
-          <li><Link to="/Student" onClick={toggleMenu} style={{color: 'white'}}>Override</Link></li>
-          <li><Link to="/Profile" onClick={toggleMenu} style={{color: 'white'}}>Profile</Link></li>
+          <li>
+            <Link
+              to="/Attendance"
+              onClick={toggleMenu}
+              style={{ color: "white" }}
+            >
+              Attendance
+            </Link>
+          </li>
+          <li>
+            <Link to="/Student" onClick={toggleMenu} style={{ color: "white" }}>
+              Override
+            </Link>
+          </li>
+          <li>
+            <Link to="/Profile" onClick={toggleMenu} style={{ color: "white" }}>
+              Profile
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/Studentmanage"
+              onClick={toggleMenu}
+              style={{ color: "white" }}
+            >
+              Student
+            </Link>
+          </li>
         </ul>
       </div>
 

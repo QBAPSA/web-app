@@ -1,0 +1,220 @@
+.student-manage {
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: white;
+  color: white;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  color: black;
+  margin-right: 15px;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100vh;
+  background-color: #333;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.side-menu.active {
+  left: 0;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu li {
+  padding: 15px 20px;
+  border-bottom: 1px solid #444;
+}
+
+.side-menu li:hover {
+  background-color: #444;
+}
+
+.side-menu a {
+  text-decoration: none;
+  color: white;
+  display: block;
+}
+
+.close-btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #444;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: #555;
+}
+
+.add-button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: block;
+  font-size: 16px;
+}
+
+.add-button:hover {
+  background-color: #1976d2;
+}
+
+.search-input {
+  background-color: #333;
+  border: 1px solid #444;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.search-input::placeholder {
+  color: #888;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: transparent;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 500;
+}
+
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #333;
+  color: black;
+}
+
+tr:hover {
+  background-color: #333;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 60px;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 60px;
+}
+
+.edit-button:hover {
+  background-color: #1976d2;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+.add-form {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.add-form h2 {
+  color: white;
+  margin-top: 0;
+}
+
+.form-fields {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.form-fields input {
+  padding: 8px 12px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #1a1a1a;
+  color: white;
+  width: 100%;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.save-button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #1976d2;
+}
+
+.cancel-button:hover {
+  background-color: #c82333;
+}
