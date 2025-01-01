@@ -39,7 +39,9 @@ export const AuthProvider = ({ children }) => {
     // Check active sessions and sets the user
     const getSession = async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession();
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
         setUser(session?.user ?? null);
         if (session?.user) {
           await fetchTeacherData(session.user.email);
@@ -55,7 +57,9 @@ export const AuthProvider = ({ children }) => {
     getSession();
 
     // Listen for changes on auth state (sign in, sign out, etc.)
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
       if (session?.user) {
         fetchTeacherData(session.user.email);
@@ -71,7 +75,10 @@ export const AuthProvider = ({ children }) => {
   const value = {
     signIn: async (email, password) => {
       try {
-        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
         if (error) throw error;
         if (data.user) {
           await fetchTeacherData(data.user.email);
@@ -96,7 +103,7 @@ export const AuthProvider = ({ children }) => {
     user,
     teacherData,
     loading,
-    isAdmin: user?.email === ADMIN_EMAIL
+    isAdmin: user?.email === ADMIN_EMAIL,
   };
 
   return (

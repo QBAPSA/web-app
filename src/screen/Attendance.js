@@ -14,7 +14,7 @@ const Attendance = () => {
   const [teacherId, setTeacherId] = useState(null);
   const [formData, setFormData] = useState({
     activity: "",
-    reason: ""
+    reason: "",
   });
   const { user } = useAuth();
   const location = useLocation();
@@ -24,7 +24,7 @@ const Attendance = () => {
     const now = new Date();
     // Adjust for timezone offset
     const offset = now.getTimezoneOffset();
-    const localDate = new Date(now.getTime() - (offset * 60 * 1000));
+    const localDate = new Date(now.getTime() - offset * 60 * 1000);
     return localDate.toISOString().split("T")[0];
   }, []);
 
@@ -49,25 +49,27 @@ const Attendance = () => {
         // Get attendance records for the teacher with proper date handling
         const targetDate = date || today;
         // Convert targetDate to YYYY-MM-DD format if it's a Date object
-        const formattedDate = targetDate instanceof Date ? 
-          targetDate.toISOString().split('T')[0] : 
-          targetDate;
-          
+        const formattedDate =
+          targetDate instanceof Date
+            ? targetDate.toISOString().split("T")[0]
+            : targetDate;
+
         console.log("Fetching attendance for date:", formattedDate);
 
-        const { data: attendanceRecords, error: attendanceError } = await supabase
-          .from("attendance_log")
-          .select(
-            `
+        const { data: attendanceRecords, error: attendanceError } =
+          await supabase
+            .from("attendance_log")
+            .select(
+              `
             attendance_id,
             date,
             status,
             student_assign_id,
             teacher_assign_id
           `
-          )
-          .eq("date", formattedDate)
-          .eq("teacher_assign_id", teacherData.teacher_id);
+            )
+            .eq("date", formattedDate)
+            .eq("teacher_assign_id", teacherData.teacher_id);
 
         if (attendanceError) throw attendanceError;
 
@@ -200,9 +202,9 @@ const Attendance = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -217,8 +219,8 @@ const Attendance = () => {
             reason: formData.reason,
             teacher_id: teacherId,
             student_lrn: selectedStudent.student_lrn,
-            date: new Date().toISOString()
-          }
+            date: new Date().toISOString(),
+          },
         ])
         .select()
         .single();
@@ -226,7 +228,8 @@ const Attendance = () => {
       if (overrideError) throw overrideError;
 
       // Then update the attendance status
-      const newStatus = selectedStudent.status === "present" ? "absent" : "present";
+      const newStatus =
+        selectedStudent.status === "present" ? "absent" : "present";
       const { error: attendanceError } = await supabase
         .from("attendance_log")
         .update({ status: newStatus })
@@ -235,8 +238,8 @@ const Attendance = () => {
       if (attendanceError) throw attendanceError;
 
       // Update local state
-      setAttendanceData(prev =>
-        prev.map(item =>
+      setAttendanceData((prev) =>
+        prev.map((item) =>
           item.attendance_id === selectedStudent.attendance_id
             ? { ...item, status: newStatus }
             : item
@@ -350,7 +353,9 @@ const Attendance = () => {
             </div>
             <div className="form-actions">
               <button onClick={handleCloseForm}>Cancel</button>
-              <button className="submit-btn" onClick={handleSubmit}>Submit</button>
+              <button className="submit-btn" onClick={handleSubmit}>
+                Submit
+              </button>
             </div>
           </div>
         </div>
