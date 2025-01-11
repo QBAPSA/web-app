@@ -72,10 +72,10 @@ function Studentmanage() {
     }
   };
 
-  // const handleEdit = (student) => {
-  //   setEditingStudent(student);
-  //   setIsEditing(true);
-  // };
+  const handleEdit = (student) => {
+    setEditingStudent(student);
+    setIsEditing(true);
+  };
 
   const handleUpdate = async () => {
     try {
@@ -124,15 +124,15 @@ function Studentmanage() {
   //   }
   // };
 
-    const handleLogout = async () => {
-      try {
-        const { error } = await supabase.auth.signOut();
-        if (error) throw error;
-        navigate("/");
-      } catch (error) {
-        console.error("Error logging out:", error.message);
-      }
-    };
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      navigate("/");
+    } catch (error) {
+      console.error("Error logging out:", error.message);
+    }
+  };
 
   return (
     <div className="student-manage">
@@ -201,6 +201,7 @@ function Studentmanage() {
               <th>STATUS</th>
               <th>LRN</th>
               <th>PARENTS #</th>
+              <th> Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -220,7 +221,7 @@ function Studentmanage() {
                   <td>ACTIVE</td>
                   <td>{student.student_lrn}</td>
                   <td>{student.contact_number}</td>
-                  {/* <td>
+                  <td>
                     <div className="action-buttons">
                       <button
                         className="edit-button"
@@ -228,14 +229,14 @@ function Studentmanage() {
                       >
                         Edit
                       </button>
-                      <button
+                      {/* <button
                         className="delete-button"
                         onClick={() => handleDelete(student.student_lrn)}
                       >
                         Delete
-                      </button>
+                      </button> */}
                     </div>
-                  </td> */}
+                  </td>
                 </tr>
               ))}
           </tbody>
@@ -280,20 +281,20 @@ function Studentmanage() {
             />
             <input
               type="text"
-              placeholder="Contact Number"
+              placeholder=" Contact Number"
               value={newStudent.contact_number}
               onChange={(e) =>
                 setNewStudent({ ...newStudent, contact_number: e.target.value })
               }
             />
-            <input
+            {/* <input
               type="text"
               placeholder="Parent Name"
               value={newStudent.parent_name}
               onChange={(e) =>
                 setNewStudent({ ...newStudent, parent_name: e.target.value })
               }
-            />
+            /> */}
             <input
               type="text"
               placeholder="Address"
