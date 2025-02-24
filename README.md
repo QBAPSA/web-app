@@ -73,5 +73,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 deployment
 
-website:  qbapsa.vercel.app
-
+website:  https://qbapsa.vercel.app/
