@@ -73,4 +73,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 deployment
 
-website:  https://qr-code-base-attendance-with-parental-alert.vercel.app/
+website:  qbapsa.vercel.app
+
