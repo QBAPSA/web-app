@@ -19,24 +19,24 @@ const Attendance = () => {
   const { user } = useAuth();
   const location = useLocation();
 
-  // Get today's date in YYYY-MM-DD format
+  
   const today = useMemo(() => {
     const now = new Date();
-    // Adjust for timezone offset
+
     const offset = now.getTimezoneOffset();
     const localDate = new Date(now.getTime() - offset * 60 * 1000);
     return localDate.toISOString().split("T")[0];
   }, []);
 
   useEffect(() => {
-    // Set selectedDate to today when component mounts
+   
     setSelectedDate(today);
   }, [today]);
 
   const fetchAttendanceData = useCallback(
     async (date) => {
       try {
-        // First, get the teacher record for the logged-in user
+        
         const { data: teacherData, error: teacherError } = await supabase
           .from("teachers")
           .select("teacher_id, teacher")
@@ -46,9 +46,9 @@ const Attendance = () => {
         if (teacherError) throw teacherError;
         console.log("Teacher data:", teacherData);
 
-        // Get attendance records for the teacher with proper date handling
+        
         const targetDate = date || today;
-        // Convert targetDate to YYYY-MM-DD format if it's a Date object
+        
         const formattedDate =
           targetDate instanceof Date
             ? targetDate.toISOString().split("T")[0]
@@ -73,7 +73,7 @@ const Attendance = () => {
 
         if (attendanceError) throw attendanceError;
 
-        // Get the full student details for these records
+       
         const { data: fullRecords, error: fullError } = await supabase
           .from("student_assign")
           .select(
@@ -93,7 +93,7 @@ const Attendance = () => {
 
         if (fullError) throw fullError;
 
-        // Combine the data
+       
         const cleanedRecords = attendanceRecords
           .map((record) => {
             const studentInfo = fullRecords.find(
@@ -146,7 +146,7 @@ const Attendance = () => {
 
   useEffect(() => {
     if (user) {
-      // Get date from URL params
+      
       const queryParams = new URLSearchParams(location.search);
       const date = queryParams.get("date");
       if (date) {
@@ -156,7 +156,7 @@ const Attendance = () => {
         fetchAttendanceData(today);
       }
 
-      // Set up real-time subscription
+      
       const subscription = supabase
         .channel("attendance_changes")
         .on(
@@ -173,14 +173,14 @@ const Attendance = () => {
         )
         .subscribe();
 
-      // Set up background refresh every 3 seconds
+      
       const refreshInterval = setInterval(() => {
         fetchAttendanceData(selectedDate || today);
-      }, 1000); // 1 seconds
+      }, 1000); 
 
       return () => {
         subscription.unsubscribe();
-        clearInterval(refreshInterval); // Clean up interval on unmount
+        clearInterval(refreshInterval); 
       };
     }
   }, [user, fetchAttendanceData, location.search, selectedDate, today]);
@@ -210,7 +210,7 @@ const Attendance = () => {
 
   const handleSubmit = async () => {
     try {
-      // First, insert into override_log
+      
       const { error: overrideError } = await supabase
         .from("override_log")
         .insert([
@@ -227,7 +227,7 @@ const Attendance = () => {
 
       if (overrideError) throw overrideError;
 
-      // Then update the attendance status
+      
       const newStatus =
         selectedStudent.status === "present" ? "absent" : "present";
       const { error: attendanceError } = await supabase
@@ -237,7 +237,7 @@ const Attendance = () => {
 
       if (attendanceError) throw attendanceError;
 
-      // Update local state
+     
       setAttendanceData((prev) =>
         prev.map((item) =>
           item.attendance_id === selectedStudent.attendance_id
@@ -246,7 +246,7 @@ const Attendance = () => {
         )
       );
 
-      // Close the form and reset
+      
       handleCloseForm();
       setFormData({ activity: "", reason: "" });
     } catch (err) {
@@ -254,6 +254,47 @@ const Attendance = () => {
       setError(err.message);
     }
   };
+
+  const downloadAttendanceData = () => {
+    try {
+      // Create CSV headers
+      const headers = ['Student LRN', 'Full Name', 'Status', 'Time'];
+      
+      // Convert attendance data to CSV format
+      const csvData = attendanceData.map(entry => [
+        entry.student_lrn,
+      `"${entry.full_name}"`,
+        entry.status,
+        formatTime(entry.date)
+      ]);
+      
+      // Combine headers and data
+      const csvContent = [
+        headers,
+        ...csvData
+      ].map(row => row.join(',')).join('\n');
+      
+      // Create blob and download link
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      
+      // Set download attributes
+      link.setAttribute('href', url);
+      link.setAttribute('download', `attendance_${selectedDate || today}.csv`);
+      link.style.visibility = 'hidden';
+      
+      // Trigger download
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading attendance data:', error);
+      setError('Failed to download attendance data');
+    }
+  };
+
+
 
   return (
     <div className="attendance-container">
@@ -270,8 +311,18 @@ const Attendance = () => {
         />
       </div> */}
 
+ 
+
       <div>
         <h3>Attendance for {selectedDate || today}</h3>
+        <button 
+              className="download-button"
+              onClick={downloadAttendanceData}
+              disabled={attendanceData.length === 0}
+
+            >
+              Download Attendance
+            </button>
       </div>
 
       <table className="attendance-table">

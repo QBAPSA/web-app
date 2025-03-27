@@ -1,17 +1,45 @@
 .calendar-page-container {
-    display: flex;                /* Use flexbox layout */
-    flex-direction: column;       /* Stack children vertically */
-    align-items: center;          /* Center horizontally */
-    justify-content: center;      /* Center vertically */
-    height: 100vh;               /* Fill the viewport height */
-    padding: 20px;               /* Optional: Add some padding */
+    display: flex;               
+    flex-direction: column;       
+    align-items: center;         
+    justify-content: center;     
+    height: 100vh;              
+    padding: 20px;               
   }
   
   .calendar-header {
-    margin-bottom: 20px;         /* Space between header and calendar */
+    margin-bottom: 20px;        
   }
   
   .attendance-link-container {
-    margin-top: 20px;            /* Space above the attendance link */
+    margin-top: 20px;           
   }
   
+.react-calendar {
+  color: black; 
+}
+
+
+.react-calendar__tile {
+  color: black;
+}
+
+
+.react-calendar__navigation button {
+  color: black;
+}
+
+
+.react-calendar__month-view__weekdays {
+  color: gray;
+}
+
+.react-calendar .sunday {
+  color: red;
+}
+
+.react-calendar .sunday:enabled:hover,
+.react-calendar .sunday:enabled:focus,
+.react-calendar .sunday.react-calendar__tile--active {
+  color: red;
+}

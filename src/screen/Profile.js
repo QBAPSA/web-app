@@ -111,10 +111,10 @@ const Profile = () => {
                 <label>Username:</label>
                 <span>{profileData.username}</span>
               </div>
-              <div className="info-item">
+              {/* <div className="info-item">
                 <label>ID:</label>
                 <span>{profileData.teacher_id}</span>
-              </div>
+              </div> */}
             </>
           )}
         </div>

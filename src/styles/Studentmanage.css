@@ -261,10 +261,35 @@ tr:hover {
 .delete-button {
   background-color: #dc3545;
   color: white;
-  border: none;
+  border: black;
   padding: 5px 15px;
   border-radius: 4px;
   cursor: pointer;
+  width: 80px;
+  margin-right: -100px;
+}
+
+
+.delete-button[disabled] {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.delete-button.disabled {
+  background-color: #28a745; 
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+.delete-button.disabled:hover {
+  background-color: #218838; 
+}
+
+
+td[data-status="inactive"] {
+  color: #6c757d;
 }
 
 .edit-button:hover {

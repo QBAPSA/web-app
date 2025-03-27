@@ -31,7 +31,12 @@ function Studentmanage() {
       const { data, error } = await supabase.from("students").select("*");
 
       if (error) throw error;
-      setStudents(data || []);
+      
+      const studentsWithStatus = data.map(student => ({
+        ...student,
+        status: student.status || 'active'
+      }));
+      setStudents(studentsWithStatus);
     } catch (error) {
       console.error("Error fetching students:", error.message);
     }
@@ -50,6 +55,8 @@ function Studentmanage() {
             contact_number: newStudent.contact_number,
             parent_name: newStudent.parent_name,
             address: newStudent.address,
+               ...newStudent,
+          status: 'active'
           },
         ])
         .select();
@@ -107,22 +114,26 @@ function Studentmanage() {
     }
   };
 
-  // const handleDelete = async (student_lrn) => {
-  //   try {
-  //     const { error } = await supabase
-  //       .from("students")
-  //       .delete()
-  //       .eq("student_lrn", student_lrn);
-
-  //     if (error) throw error;
-
-  //     setStudents(
-  //       students.filter((student) => student.student_lrn !== student_lrn)
-  //     );
-  //   } catch (error) {
-  //     console.error("Error deleting student:", error.message);
-  //   }
-  // };
+  const handleToggleStatus = async (student_lrn, currentStatus) => {
+    try {
+      const newStatus = currentStatus === 'inactive' ? 'active' : 'inactive';
+      const { error } = await supabase
+        .from("students")
+        .update({ status: newStatus })
+        .eq("student_lrn", student_lrn);
+  
+      if (error) throw error;
+  
+      // Update the local state to reflect the change
+      setStudents(students.map(student => 
+        student.student_lrn === student_lrn 
+          ? { ...student, status: newStatus }
+          : student
+      ));
+    } catch (error) {
+      console.error("Error toggling student status:", error.message);
+    }
+  };
 
   const handleLogout = async () => {
     try {
@@ -218,7 +229,7 @@ function Studentmanage() {
               .map((student) => (
                 <tr key={student.student_lrn}>
                   <td>{`${student.first_name} ${student.last_name}`}</td>
-                  <td>ACTIVE</td>
+                  <td>{student.status?.toUpperCase() || 'ACTIVE'}</td>
                   <td>{student.student_lrn}</td>
                   <td>{student.contact_number}</td>
                   <td>
@@ -229,12 +240,12 @@ function Studentmanage() {
                       >
                         Edit
                       </button>
-                      {/* <button
-                        className="delete-button"
-                        onClick={() => handleDelete(student.student_lrn)}
+                      <button
+                        className={`delete-button ${student.status === 'inactive' ? 'disabled' : ''}`}
+                        onClick={() => handleToggleStatus(student.student_lrn, student.status)}
                       >
-                        Delete
-                      </button> */}
+                        {student.status === 'inactive' ? 'Enable' : 'Disable'}
+                      </button>
                     </div>
                   </td>
                 </tr>
