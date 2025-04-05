@@ -1,0 +1,47 @@
+.side-menu.active {
+  left: 0;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu li {
+  padding: 15px 20px;
+  border-bottom: 1px solid #444;
+}
+
+.side-menu li:hover {
+  background-color: #444;
+}
+
+.side-menu a {
+  text-decoration: none;
+  color: white;
+  display: block;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: white;
+  padding: 20px;
+}
+
+.sidebar-item {
+  padding: 10px;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sidebar-item.active {
+  background-color: #f00;
+  color: white !important;
+}
+
+.sidebar-item:hover {
+  text-decoration: none;
+  color: inherent;
+}

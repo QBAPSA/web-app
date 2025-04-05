@@ -112,14 +112,19 @@ function Teachermanage() {
   return (
     <div className="student-manage">
       <div className="sidebar">
-        <div className="sidebar-item">ADMIN 1</div>
-        <div className="sidebar-item">RECORDS</div>
+        {/* <div className="sidebar-item">ADMIN 1</div> */}
         <Link
-          to="/studentmanage"
+          to="/SectionManage"
           className="sidebar-item"
           style={{ textDecoration: "none" }}
         >
           SECTIONS
+        </Link>        <Link
+          to="/studentmanage"
+          className="sidebar-item"
+          style={{ textDecoration: "none" }}
+        >
+          STUDENTS
         </Link>
         <div className="sidebar-item active">TEACHERS</div>
         <div 

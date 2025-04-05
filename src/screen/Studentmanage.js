@@ -148,9 +148,15 @@ function Studentmanage() {
   return (
     <div className="student-manage">
       <div className="sidebar">
-        <div className="sidebar-item">ADMIN 1</div>
-        <div className="sidebar-item">RECORDS</div>
-        <div className="sidebar-item active">SECTIONS</div>
+        {/* <div className="sidebar-item">ADMIN 1</div> */}
+        <Link
+          to="/SectionManage"
+          className="sidebar-item"
+          style={{ textDecoration: "none", color: "black" }}
+        >
+          SECTIONS
+        </Link>
+        <div className="sidebar-item active">STUDENTS</div>
         <Link
           to="/teachermanage"
           className="sidebar-item"

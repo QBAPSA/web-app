@@ -5,6 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import SectionManage from "./screen/SectionManage";
 import SignIn from "./screen/SignIn";
 import Record from "./screen/Record";
 import Section from "./screen/Section";
@@ -87,6 +88,14 @@ const AppRoutes = () => {
         }
       />
       <Route
+        path="/sectionmanage"
+        element={
+          <PrivateRoute allowedEmail={ADMIN_EMAIL}>
+            <SectionManage />
+          </PrivateRoute>
+        }
+      />
+      <Route
         path="/teachermanage"
         element={
           <PrivateRoute allowedEmail={ADMIN_EMAIL}>
@@ -94,6 +103,7 @@ const AppRoutes = () => {
           </PrivateRoute>
         }
       />
+
     </Routes>
   );
 };
